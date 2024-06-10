@@ -26,22 +26,54 @@ try:
     print("Open successfully")
 except:
     print("Can not open the port")
+    
+relay_data = [
+    {'ON': [1, 6, 0, 0, 0, 255, 200, 91], 'OFF': [1, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [2, 6, 0, 0, 0, 255, 200, 91], 'OFF': [2, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [3, 6, 0, 0, 0, 255, 200, 91], 'OFF': [3, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [4, 6, 0, 0, 0, 255, 200, 91], 'OFF': [4, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [5, 6, 0, 0, 0, 255, 200, 91], 'OFF': [5, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [6, 6, 0, 0, 0, 255, 200, 91], 'OFF': [6, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [7, 6, 0, 0, 0, 255, 200, 91], 'OFF': [7, 6, 0, 0, 0, 0, 136, 27]},
+    {'ON': [8, 6, 0, 0, 0, 255, 200, 91], 'OFF': [8, 6, 0, 0, 0, 0, 136, 27]}
+]
 
-relay1_ON  = [0, 6, 0, 0, 0, 255, 200, 91]
-relay1_OFF = [0, 6, 0, 0, 0, 0, 136, 27]
+# relay1_ON = [1, 6, 0, 0, 0, 255, 200, 91]
+# relay1_OFF = [1, 6, 0, 0, 0, 0, 136, 27]
 
-def setDevice1(state):
+# relay2_ON = [2, 6, 0, 0, 0, 255, 200, 91]
+# relay2_OFF = [2, 6, 0, 0, 0, 0, 136, 27]
+
+# relay3_ON = [3, 6, 0, 0, 0, 255, 200, 91]
+# relay3_OFF = [3, 6, 0, 0, 0, 0, 136, 27]
+
+# relay4_ON = [4, 6, 0, 0, 0, 255, 200, 91]
+# relay4_OFF = [4, 6, 0, 0, 0, 0, 136, 27]
+
+# relay5_ON = [5, 6, 0, 0, 0, 255, 200, 91]
+# relay5_OFF = [5, 6, 0, 0, 0, 0, 136, 27]
+
+# relay6_ON = [6, 6, 0, 0, 0, 255, 200, 91]
+# relay6_OFF = [6, 6, 0, 0, 0, 0, 136, 27]
+
+# relay7_ON = [7, 6, 0, 0, 0, 255, 200, 91]
+# relay7_OFF = [7, 6, 0, 0, 0, 0, 136, 27]
+
+# relay8_ON = [8, 6, 0, 0, 0, 255, 200, 91]
+# relay8_OFF = [8, 6, 0, 0, 0, 0, 136, 27]
+
+def setDevice(state, device):
     if state == True:
-        ser.write(relay1_ON)
+        ser.write(relay_data[device - 1]['ON'])
     else:
-        ser.write(relay1_OFF)
+        ser.write(relay_data[device - 1]['OFF'])
     time.sleep(1)
     print(serial_read_data(ser))
 
 while True:
-    setDevice1(True)
+    setDevice1(True, 2)
     time.sleep(2)
-    setDevice1(False)
+    setDevice1(False, 2)
     time.sleep(2)
 
 
