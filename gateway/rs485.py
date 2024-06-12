@@ -16,7 +16,7 @@ def getPort():
     return commPort
     # return "/dev/ttyUSB1"
 
-portName = "/dev/ttyUSB1"
+portName = getPort()
 print(portName)
 
 
@@ -64,17 +64,19 @@ relay_data = [
 
 def setDevice(state, device):
     if state == True:
-        ser.write(relay_data[device - 1]['ON'])
+        # ser.write(relay_data[device - 1]['ON'])
+        print("Turning ON relay " + str(device))
     else:
-        ser.write(relay_data[device - 1]['OFF'])
+        # ser.write(relay_data[device - 1]['OFF'])
+        print("Turning OFF relay " + str(device))
     time.sleep(1)
-    print(serial_read_data(ser))
+    # print(serial_read_data(ser))
 
-while True:
-    setDevice1(True, 2)
-    time.sleep(2)
-    setDevice1(False, 2)
-    time.sleep(2)
+# while True:
+#     setDevice(True, 2)
+#     time.sleep(2)
+#     setDevice(False, 2)
+#     time.sleep(2)
 
 
 def serial_read_data(ser):
@@ -93,21 +95,23 @@ def serial_read_data(ser):
 
 soil_temperature =[1, 3, 0, 6, 0, 1, 100, 11]
 def readTemperature():
-    serial_read_data(ser)
-    ser.write(soil_temperature)
+    print("Reading Temperature")
+    # serial_read_data(ser)
+    # ser.write(soil_temperature)
     time.sleep(1)
-    return serial_read_data(ser)
+    # return serial_read_data(ser)
 
 soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]
 def readMoisture():
-    serial_read_data(ser)
-    ser.write(soil_moisture)
+    print("Reading Moisture")
+    # serial_read_data(ser)
+    # ser.write(soil_moisture)
     time.sleep(1)
-    return serial_read_data(ser)
+    # return serial_read_data(ser)
 
-while True:
-    print("TEST SENSOR")
-    print(readMoisture())
-    time.sleep(1)
-    print(readTemperature())
-    time.sleep(1)
+# while True:
+#     print("TEST SENSOR")
+#     print(readMoisture())
+#     time.sleep(1)
+#     print(readTemperature())
+#     time.sleep(1)
